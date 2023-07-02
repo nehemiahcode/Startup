@@ -76,8 +76,8 @@ function App() {
           ref={navbarRef}
           className={` absolute ${
             Menuicon
-              ? "left-5 duration-200 sm:left-[18%] "
-              : "  left-[-1000%] duration-200"
+              ? "left-5 duration-200 block sm:left-[18%] "
+              : "  left-[-1000%] hidden duration-200"
           } md:relative md:mr-15 opacity-100 bg-slate-800 w-[90%] md:w-auto md:pt-0 pt-10 rounded-lg
           left-[5%]   z-50   top-[80px] md:left-0 md:top-0 md:flex-row sm:w-[70%]  md:h-0 h-[400px] gap-3
            ring-1 ring-inset  flex-col md:gap-4  flex md:justify-between items-center`}
