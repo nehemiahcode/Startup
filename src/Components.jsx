@@ -342,7 +342,7 @@ export function Section7() {
         There are many variations of passages of Lorem Ipsum available but the
         majority have suffered alteration in some form.
       </p>
-      <div className=" grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 px-10 place-content-center">
+      <div className=" grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 px-5 sm:px-10 place-content-center">
         {BiggerCards.map((card, index) => (
           <div
             style={{
@@ -428,7 +428,7 @@ export function Contact() {
   return (
     <section className=" bg-indigo-950 w-full h-auto grid lg:grid-cols-3 grid-cols-1">
       <div className=" w-[100%] h-[auto]  col-span-2  p-5 lg:p-10 ">
-        <div className="px-6 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
+        <div className="px-4 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
           <h1 className=" text-white font-bold text-4xl pb-4 px-1 lg:px-4">
             Need Help? Open a Ticket
           </h1>
