@@ -451,7 +451,8 @@ export function Contact() {
                   autoFocus="off"
                   autoComplete="off"
                   className=" py-3 rounded-md placeholder:text-lg placeholder:font-medium
-          focus:border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5 shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]"
+          hover:border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
+           shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]"
                 />
               </div>
             ))}
@@ -471,7 +472,7 @@ export function Contact() {
               className=" 
           
           placeholder:text-lg placeholder:font-medium  mx-auto         px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
-              focus:border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none text-white font-normal text-md outline-none rounded-md"
+              hover:border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none text-white font-normal text-md outline-none rounded-md"
             ></textarea>
           </div>
           <button className=" bg-blue-500 px-4 py-3 ml-3 lg:ml-5 focus:ring-4 ring-inset ring-blue-200 hover:text-black duration-300 hover:bg-blue-300 rounded-lg w-[200px] text-white font-semibold">
