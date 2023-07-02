@@ -448,7 +448,6 @@ export function Contact() {
                 <input
                   type={input.type}
                   placeholder={input.placeholder}
-                  autoFocus="off"
                   autoComplete="off"
                   className=" py-3 rounded-md placeholder:text-lg placeholder:font-medium
           hover:border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
@@ -466,8 +465,7 @@ export function Contact() {
               Your Message
             </label>
             <textarea
-              name=""
-              id=""
+              
               placeholder="Enter your Message"
               className=" 
           
