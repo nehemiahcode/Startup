@@ -10,6 +10,7 @@ import Avatar2 from "./assets/auth-02.png";
 import Avatar3 from "./assets/auth-03.png";
 import SvgvImage from "./assets/Svgimage.svg";
 import MoonSvg from "./assets/MoonSvg.svg";
+import { Link } from "react-router-dom";
 
 function Section1() {
   return (
@@ -17,10 +18,10 @@ function Section1() {
       <section
         className=" h-[600px] w-full bg-indigo-950 pb-10"
         style={{
-          backgroundImage: `url(${bgImage}), url(${bgImage2})`,
-          backgroundRepeat: "no-repeat, no-repeat",
-          backgroundSize: "550px, 230px",
-          backgroundPosition: " right, left",
+          backgroundImage: `url(${bgImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "550px",
+          backgroundPosition: " center",
         }}
       >
         <h1 className=" text-4xl lg:text-6xl sm:text-4xl md:text-5xl font-bold text-white text-center pt-10 px-5  lg:px-52 md:px-9 sm:px-12">
@@ -31,15 +32,12 @@ function Section1() {
           Business, Software and Agencies. Comes with high-quality design and
           everything you need!
         </p>
-        <div className=" text-blue-300 lg:text-sky-600 font-extrabold text-7xl text-center -rotate-[50deg]">
+        <div className=" text-blue-300 lg:text-sky-600 font-extrabold text-7xl animate-spin text-center -rotate-[50deg]">
           <ion-icon name="send-outline"></ion-icon>
         </div>
 
         <div className=" flex justify-center  w-[100%] gap-4  mt-10">
           <button className=" bg-sky-700 px-3 py-3 lg:px-5 lg:py-4 rounded-lg font-medium text-lg text-white hover:bg-sky-600 duration-200 w-[180px] md:w-[190px] lg:w-[200px]">
-            Get started
-          </button>
-          <button className=" bg-slate-700 opacity-70  lg:opacity-100 px-3 lg:px-5 py-3 lg:py-4 rounded-lg font-medium text-lg text-black hover:bg-slate-500 duration-200 w-[180px] md:w-[190px] lg:w-[200px]">
             Get started
           </button>
         </div>
@@ -68,7 +66,8 @@ export function Section2() {
         There are many variations of passages of Lorem Ipsum available but the
         majority have suffer alteration in some form.
       </p>
-      <div className=" h-[auto] w-[100%]  grid grid-cols-1 place-content-center place-items-center gap-0 md:gap-5 md:grid-cols-2 lg:grid-cols-3 px-4 lg:px-10">
+      <div className=" h-[auto] w-[100%]  grid grid-cols-1 place-content-center
+       place-items-center  md:gap-5 md:grid-cols-2 lg:grid-cols-3 px-2 lg:px-10">
         {Data.map((data, index) => (
           <div
             key={index}
@@ -393,9 +392,9 @@ export function Section7() {
 export function ScrollToTop() {
   const [visibleButton, setVisibleButton] = useState(false);
   useEffect(() => {
-    window.addEventListener("click", handleScrollTop);
+    document.body.addEventListener("click", handleScrollTop);
     return () => {
-      window.removeEventListener("click", handleScrollTop);
+      document.body.removeEventListener("click", handleScrollTop);
     };
   }, []);
 
@@ -465,12 +464,12 @@ export function Contact() {
               Your Message
             </label>
             <textarea
-              
               placeholder="Enter your Message"
               className=" 
-          
-          placeholder:text-lg placeholder:font-medium  mx-auto         px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
-              hover:border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none text-white font-normal text-md outline-none rounded-md"
+             placeholder:text-lg placeholder:font-medium  mx-auto  
+                 px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
+              hover:border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none
+               text-white font-normal text-md outline-none rounded-md"
             ></textarea>
           </div>
           <button className=" bg-blue-500 px-4 py-3 ml-3 lg:ml-5 focus:ring-4 ring-inset ring-blue-200 hover:text-black duration-300 hover:bg-blue-300 rounded-lg w-[200px] text-white font-semibold">
@@ -478,7 +477,7 @@ export function Contact() {
           </button>
         </div>
       </div>
-      <div className=" w-full h-[auto] mt-4 bg-indigo-950 flex justify-start items-end px-9 sm:px-0 pr-3">
+      <div className=" w-full h-[auto] mt-4 bg-indigo-950 flex justify-start items-center px-9 sm:px-0 pr-3">
         <img
           src={AboutImage}
           alt="Images"
@@ -491,66 +490,89 @@ export function Contact() {
 
 export function Footer() {
   const Links = [
-    {id:0, Heading:"Useful Links", linkText:["Blog", "Pricing","About"],},
-    {id:1, Heading:"Useful Links", linkText:["TOS", "Privacy Policy","Refund Policy" ],},
-    {id:2, Heading:"Useful Links", linkText:["  Open Support Ticket", " Terms of Use","   About" ],},
-    // {id:1, Heading:"", linkText:"",},
-    // {id:2, Heading:"", linkText:"",}
-  
-   
- 
-  ]
+    { id: 0, Heading: "Useful Links", linkText: ["About", "Pricing", "Blog"],      Url:["/about", "/pricing", "/blog"]},
+    {
+      id: 1,
+      Heading: "Terms",
+      linkText: ["TOS", "Privacy Policy", "Refund Policy"],
+      Url:["/", "/", "/"]
+    },
+    {
+      id: 2,
+      Heading: "Support and help",
+      linkText: ["  Open Support Ticket", " Terms of Use", "   About"],
+      Url:["/", "/", "/"]
+    },
+  ];
   return (
-   <>
-    <footer
-      className=" w-full h-[auto] bg-indigo-900"
-      style={{
-        backgroundImage: `url(${SvgvImage}), url(${MoonSvg})`,
-        backgroundPosition: "left, right",
-        backgroundRepeat: "no-repeat, no-repeat",
-        backgroundSize: "100px, 100px",
-      }}
-    >
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pt-8">
-        <div className=" pl-8 w-[100%]">
-          <div className=" flex  items-center gap-2">
-            <div className="text-5xl text-sky-600">
-              <ion-icon name="logo-bitbucket"></ion-icon>
+    <>
+      <footer
+        className=" w-full h-[auto] bg-indigo-900"
+        style={{
+          backgroundImage: `url(${SvgvImage}), url(${MoonSvg})`,
+          backgroundPosition: "left, right",
+          backgroundRepeat: "no-repeat, no-repeat",
+          backgroundSize: "100px, 100px",
+        }}
+      >
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pt-8">
+          <div className=" pl-3 lg:pl-5 w-[100%]">
+            <div className=" flex  items-center gap-2">
+              <div className="text-5xl text-sky-600">
+                <ion-icon name="logo-bitbucket"></ion-icon>
+              </div>
+              <div className=" py-10">
+                <h1 className=" text-white font-bold text-4xl">Startup</h1>
+              </div>
             </div>
-            <div className=" py-10">
-              <h1 className=" text-white font-bold text-4xl">Startup</h1>
+
+            <div>
+              <h1 className=" font-bold text-xl text-white">
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                lobortis.
+              </h1>
+            </div>
+            <div className="flex items-center text-white gap-4 text-2xl py-9">
+              <ion-icon name="logo-facebook"></ion-icon>
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <ion-icon name="logo-instagram"></ion-icon>
+              <ion-icon name="logo-twitter"></ion-icon>
             </div>
           </div>
 
-          <div>
-            <h1 className=" font-bold text-xl text-white">
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              lobortis.
-            </h1>
-          </div>
-          <div className="flex items-center text-white gap-4 text-2xl py-9">
-            <ion-icon name="logo-facebook"></ion-icon>
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <ion-icon name="logo-instagram"></ion-icon>
-            <ion-icon name="logo-twitter"></ion-icon>
-          </div>
-        </div>
+          {Links.map((link, index) => (
+            <div
+              key={index}
+              className=" flex flex-col gap-5 py-10 w-[100%] pl-3 lg:pl-5"
+            >
+              <h1 className=" font-bold text-xl text-white">{link.Heading}</h1>
+              <p className="text-lg font-semibold text-white  hover:underline">
+              <Link to={link.Url[0]}>
+              {link.linkText[0]} 
+              </Link>
 
-      {Links.map((link, index) => (
-          <div key={index} className=" flex flex-col gap-5 py-10 w-[100%] pl-8">
-          <h1 className=" font-bold text-xl text-white">{link.Heading}</h1>
-          <p className="text-lg font-semibold text-white  hover:underline">{link.linkText[0]}</p>
-          <p className="text-lg font-semibold text-white  hover:underline">{link.linkText[1]}</p>
-          <p className="text-lg font-semibold text-white  hover:underline">{link.linkText[2]}</p>
+              </p>
+              <p className="text-lg font-semibold text-white  hover:underline">
+              <Link to={link.Url[1]}>
+              {link.linkText[1]} 
+              </Link>
+              </p>
+              <p className="text-lg font-semibold text-white  hover:underline">
+              <Link to={link.Url[2]}>
+              {link.linkText[2]} 
+              </Link>
+              </p>
+            </div>
+          ))}
         </div>
-      ))}
+      </footer>
+
+      <div className=" bg-slate-950 w-full h-[100px] flex justify-center items-center">
+        <h1 className=" text-white font-medium text-xl">
+          © Crafted by UIdeck for You!
+        </h1>
       </div>
-    </footer>
-
-    <div className=" bg-slate-950 w-full h-[100px] flex justify-center items-center">
-      <h1 className=" text-white font-medium text-xl">© Crafted by UIdeck for You!</h1>
-    </div>
-   </>
+    </>
   );
 }

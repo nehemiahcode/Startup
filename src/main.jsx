@@ -1,22 +1,39 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import Section1 from './Components.jsx'
-import { Section2, Section3, Section4, Section5, Section6, Section7, ScrollToTop, Contact,Footer } from './Components.jsx'
-import './index.css'
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Homepage from "./Pages/Homepage";
+import "./index.css";
+import Pricingpage from "./Pages/Pricingpage";
+import Aboutpage from "./Pages/Aboutpage";
+import Blogpage from "./Pages/Blogpage";
+import "./App.css"
+import Contactpage from "./Pages/Contactpage";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Homepage />,
+  },
+  {
+  path: "/pricing",
+  element: <Pricingpage />,
+},
+{
+  path: "/about",
+  element: <Aboutpage />,
+},
+{
+  path: "/blog",
+  element: <Blogpage />,
+},
+{
+  path: "/contact",
+  element: <Contactpage />,
+},
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-    <Section1/>
-    <Section2/>
-    <Section3/>
-    <Section4/>
-    <Section5/>
-    <Section6/>
-    <Section7/>
-    <ScrollToTop/>
-    <Contact/>
-    <Footer/>
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
