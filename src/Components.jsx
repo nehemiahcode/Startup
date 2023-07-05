@@ -428,7 +428,7 @@ const schema = yup.object({
   name: yup
     .string()
     .required("Name is a required field")
-    .max(7, "That's too long!"),
+    .max(10, "That's too long!"),
   email: yup
     .string()
     .required("Email  is a required field")
