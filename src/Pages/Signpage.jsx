@@ -26,7 +26,7 @@ const schema = yup.object({
 function Signpage() {
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
-  const [Loading, setLoading] = React.useState(false);
+  const [Loading, setLoading] = useState(false);
 
   const {
     register,
