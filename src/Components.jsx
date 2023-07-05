@@ -481,7 +481,7 @@ export function Contact() {
     <section className=" bg-indigo-950 w-full h-auto grid lg:grid-cols-3 grid-cols-1">
       <div className=" w-[100%] h-[auto]  col-span-2  p-5 lg:p-10 ">
         {showalert ? (
-          <div className=" relative bg-white px-10 py-5 rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] mx-auto h-[300px] shadow-xl flex items-center flex-col">
+          <div className=" relative bg-white px-10 py-5 rounded-lg w-[90%] lg:w-[55%] md:w-[60%] sm:w-[80%] mx-auto h-[300px] shadow-xl flex items-center flex-col">
             <span className=" text-lime-600 text-8xl flex justify-center items-center mt-3">
               <ion-icon name="checkmark-circle-outline"></ion-icon>
             </span>
