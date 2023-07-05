@@ -80,9 +80,9 @@ function App() {
           ref={navbarRef}
           className={` absolute ${
             Menuicon
-              ? "left-5 duration-200 block sm:left-[18%] "
+              ? "left-4 duration-200 block sm:left-[18%] "
               : "  left-[-1000%]  hidden md:flex duration-200"
-          } md:relative md:mr-15 opacity-100 bg-slate-800 w-[90%] md:w-auto md:pt-0 pt-10 rounded-lg
+          } md:relative md:mr-15 opacity-100 bg-slate-800 w-[93%] md:w-auto md:pt-0 pt-10 rounded-lg
           left-[5%]   z-50   top-[80px] md:left-0 md:top-0 md:flex-row sm:w-[70%]  md:h-0 h-[400px] gap-3
            ring-1 ring-inset  flex-col md:gap-4  flex md:justify-between items-center`}
         >
@@ -98,18 +98,18 @@ function App() {
             </li>
           ))}
           {/* buttons in the navbar */}
-          <div className=" flex justify-between items-center gap-5 md:hidden mt-4">
+          <div className=" flex justify-between items-center gap-5 md:hidden mt-4 px-3">
             <button
               className=" bg-gray-100 text-lg focus:bg-gray-200  focus:ring-2 ring-inset
              ring-sky-500 py-2 px-9   rounded-md text-center text-black font-medium"
             >
-              <Link to={"/contact"}> Sign in</Link>
+                   <Link to={"/signin"}> Sign In</Link>
             </button>
             <button
               className=" bg-sky-700 py-2 focus:bg-sky-800 focus:ring-2
              ring-inset ring-white px-9 rounded-md  text-center text-white text-lg font-medium"
             >
-              <Link to={"/contact"}> Sign Up</Link>
+            <Link to={"/signup"}> Sign Up</Link>
             </button>
           </div>
         </ul>
@@ -120,13 +120,13 @@ function App() {
            rounded-md text-center focus:ring-2 ring-inset
              ring-sky-500 text-black font-medium"
           >
-            <Link to={"/contact"}> Sign In</Link>
+            <Link to={"/signin"}> Sign In</Link>
           </button>
           <button
             className=" bg-sky-700 py-2 px-9 rounded-md hidden md:block  focus:ring-2
              ring-inset ring-white text-center text-white text-lg font-medium"
           >
-            <Link to={"/contact"}> Sign Up</Link>
+            <Link to={"/signup"}> Sign Up</Link>
           </button>
           <div
             ref={menuIconRef}

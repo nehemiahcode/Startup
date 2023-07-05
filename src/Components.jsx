@@ -11,6 +11,9 @@ import Avatar3 from "./assets/auth-03.png";
 import SvgvImage from "./assets/Svgimage.svg";
 import MoonSvg from "./assets/MoonSvg.svg";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 function Section1() {
   return (
@@ -66,12 +69,14 @@ export function Section2() {
         There are many variations of passages of Lorem Ipsum available but the
         majority have suffer alteration in some form.
       </p>
-      <div className=" h-[auto] w-[100%]  grid grid-cols-1 place-content-center
-       place-items-center  md:gap-5 md:grid-cols-2 lg:grid-cols-3 px-2 lg:px-10">
+      <div
+        className=" h-[auto] w-[100%]  grid grid-cols-1 place-content-center
+       place-items-center  md:gap-5 md:grid-cols-2 lg:grid-cols-3 px-2 lg:px-10"
+      >
         {Data.map((data, index) => (
           <div
             key={index}
-            className="w-[100%] md:w-[80%] sm:w-[70%] h-[400px] pl-5"
+            className="w-[100%] md:w-[80%] sm:w-[70%] h-[400px] px-3"
           >
             <div className=" bg-sky-700 opacity-70 p-2 flex items-center justify-center mb-3 w-20 text-sky-100 text-5xl rounded-md">
               <ion-icon name={data.icon}></ion-icon>
@@ -392,9 +397,9 @@ export function Section7() {
 export function ScrollToTop() {
   const [visibleButton, setVisibleButton] = useState(false);
   useEffect(() => {
-    document.body.addEventListener("click", handleScrollTop);
+    window.addEventListener("scroll", handleScrollTop);
     return () => {
-      document.body.removeEventListener("click", handleScrollTop);
+      window.removeEventListener("scroll", handleScrollTop);
     };
   }, []);
 
@@ -410,72 +415,166 @@ export function ScrollToTop() {
   return (
     <button
       onClick={ScrollToTop}
-      className={`h-[43px] w-[43px] ${
+      className={`h-[45px] w-[45px] ${
         visibleButton ? " invisible" : "visible"
-      } z-[999] rounded-md bg-sky-800 text-white text-2xl fixed bottom-[40px] right-[20px]`}
+      } z-[999] rounded-md bg-sky-800 animate-bounce text-white font-bold text-3xl fixed bottom-[40px] right-[20px]`}
     >
       <ion-icon name="chevron-up-outline"></ion-icon>
     </button>
   );
 }
 
+const schema = yup.object({
+  name: yup
+    .string()
+    .required("Name is a required field")
+    .max(7, "That's too long!"),
+  email: yup
+    .string()
+    .required("Email  is a required field")
+    .email("Email is not valid"),
+  message: yup
+    .string()
+    .required("Message must be filled out")
+    .max(20, "That's too long!"),
+});
+
 export function Contact() {
+  const [showalert, setShowAlert] = useState(false);
+  const [Loading, setLoading] = useState(false);
+  const [text, setText] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setShowAlert(true);
+      setText(data.name);
+    }, 3000);
+  };
+
   const Inputs = [
-    { id: 0, placeholder: "Enter your name", type: "text", label: "Name" },
-    { id: 0, placeholder: "Enter your email", type: "email", label: "Email" },
+    {
+      id: 0,
+      placeholder: "Enter your name",
+      type: "text",
+      label: "Name",
+      errors: "name",
+    },
+    {
+      id: 0,
+      placeholder: "Enter your email",
+      type: "email",
+      label: "Email",
+      errors: "email",
+    },
   ];
   return (
     <section className=" bg-indigo-950 w-full h-auto grid lg:grid-cols-3 grid-cols-1">
       <div className=" w-[100%] h-[auto]  col-span-2  p-5 lg:p-10 ">
-        <div className="px-4 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
-          <h1 className=" text-white font-bold text-4xl pb-4 px-1 lg:px-4">
-            Need Help? Open a Ticket
-          </h1>
-          <p className=" text-white font-medium text-lg px-1 lg:px-4">
-            Our support team will get back to you ASAP via email.
-          </p>
+        {showalert ? (
+          <div className=" relative bg-white px-10 py-5 rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] mx-auto h-[300px] shadow-xl flex items-center flex-col">
+            <span className=" text-lime-600 text-8xl flex justify-center items-center mt-3">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </span>
+            <h1 className={` text-black font-medium py-4 text-xl text-center`}>
+              Weldone <span className=" text-xl font-bold"> {text}</span> <br />
+              Your Ticket has been opened
+            </h1>
 
-          <div className=" w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:px-4  pt-7">
-            {Inputs.map((input, index) => (
-              <div key={index}>
+            <span
+              onClick={() => setShowAlert(false)}
+              className=" text-black absolute bg-zinc-300 p-1 flex justify-center
+                 items-center rounded-md top-4 right-4 text-4xl hover:text-red-600"
+            >
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </span>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="px-4 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
+              <h1 className=" text-white font-bold text-4xl pb-4 px-1 lg:px-4">
+                Need Help? Open a Ticket
+              </h1>
+              <p className=" text-white font-medium text-lg px-1 lg:px-4">
+                Our support team will get back to you ASAP via email.
+              </p>
+
+              <div className=" w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:px-4  pt-7">
+                {Inputs.map((input, index) => (
+                  <div key={index}>
+                    <label
+                      htmlFor="Name"
+                      className=" font-medium text-zinc-400 text-lg pb-3"
+                    >
+                      {input.label}
+                    </label>
+                    <input
+                      disabled={Loading}
+                      type={input.type}
+                      {...register(input.errors)}
+                      placeholder={input.placeholder}
+                      autoComplete="off"
+                      className={` ${
+                        Loading ? "cursor-not-allowed" : " cursor-auto"
+                      } py-3 rounded-md placeholder:text-lg placeholder:font-medium
+         border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
+         shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]`}
+                    />
+                    <span className=" text-red-600 py-2 font-medium">
+                      {errors[input.errors]?.message}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className=" w-full grid grid-cols-1  py-6 lg:px-4 px-1">
                 <label
                   htmlFor="Name"
                   className=" font-medium text-zinc-400 text-lg pb-3"
                 >
-                  {input.label}
+                  Your Message
                 </label>
-                <input
-                  type={input.type}
-                  placeholder={input.placeholder}
-                  autoComplete="off"
-                  className=" py-3 rounded-md placeholder:text-lg placeholder:font-medium
-          hover:border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
-           shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]"
-                />
+                <textarea
+                  disabled={Loading}
+                  placeholder="Enter your Message"
+                  {...register("message")}
+                  className={` ${
+                    Loading ? "cursor-not-allowed" : " cursor-auto"
+                  } 
+           placeholder:text-lg placeholder:font-medium  mx-auto  
+               px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
+           border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none
+             text-white font-normal text-md outline-none rounded-md`}
+                ></textarea>
+                <span className=" text-red-600 py-2 font-medium">
+                  {errors["message"]?.message}
+                </span>
               </div>
-            ))}
-          </div>
-
-          <div className=" w-full grid grid-cols-1  py-6 lg:px-4 px-1">
-            <label
-              htmlFor="Name"
-              className=" font-medium text-zinc-400 text-lg pb-3"
-            >
-              Your Message
-            </label>
-            <textarea
-              placeholder="Enter your Message"
-              className=" 
-             placeholder:text-lg placeholder:font-medium  mx-auto  
-                 px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
-              hover:border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none
-               text-white font-normal text-md outline-none rounded-md"
-            ></textarea>
-          </div>
-          <button className=" bg-blue-500 px-4 py-3 ml-3 lg:ml-5 focus:ring-4 ring-inset ring-blue-200 hover:text-black duration-300 hover:bg-blue-300 rounded-lg w-[200px] text-white font-semibold">
-            Submit Ticket
-          </button>
-        </div>
+              <button
+                type="submit"
+                className={`
+                ${Loading ? "cursor-not-allowed" : " cursor-auto"} 
+                bg-blue-500 px-4 py-3 ml-3 lg:ml-5 focus:ring-4 ring-inset ring-blue-200 hover:text-black duration-300 hover:bg-blue-300 rounded-lg w-[200px] text-white font-semibold`}
+              >
+                {Loading ? (
+                  <span className="  animate-spin inline-block text-2xl font-semibold text-white">
+                    <ion-icon name="refresh-outline"></ion-icon>
+                  </span>
+                ) : (
+                  "Submit Ticket"
+                )}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
       <div className=" w-full h-[auto] mt-4 bg-indigo-950 flex justify-start items-center px-9 sm:px-0 pr-3">
         <img
@@ -490,18 +589,23 @@ export function Contact() {
 
 export function Footer() {
   const Links = [
-    { id: 0, Heading: "Useful Links", linkText: ["About", "Pricing", "Blog"],      Url:["/about", "/pricing", "/blog"]},
+    {
+      id: 0,
+      Heading: "Useful Links",
+      linkText: ["About", "Pricing", "Blog"],
+      Url: ["/about", "/pricing", "/blog"],
+    },
     {
       id: 1,
       Heading: "Terms",
       linkText: ["TOS", "Privacy Policy", "Refund Policy"],
-      Url:["/", "/", "/"]
+      Url: ["/", "/", "/"],
     },
     {
       id: 2,
       Heading: "Support and help",
       linkText: ["  Open Support Ticket", " Terms of Use", "   About"],
-      Url:["/", "/", "/"]
+      Url: ["/", "/", "/"],
     },
   ];
   return (
@@ -548,20 +652,13 @@ export function Footer() {
             >
               <h1 className=" font-bold text-xl text-white">{link.Heading}</h1>
               <p className="text-lg font-semibold text-white  hover:underline">
-              <Link to={link.Url[0]}>
-              {link.linkText[0]} 
-              </Link>
-
+                <Link to={link.Url[0]}>{link.linkText[0]}</Link>
               </p>
               <p className="text-lg font-semibold text-white  hover:underline">
-              <Link to={link.Url[1]}>
-              {link.linkText[1]} 
-              </Link>
+                <Link to={link.Url[1]}>{link.linkText[1]}</Link>
               </p>
               <p className="text-lg font-semibold text-white  hover:underline">
-              <Link to={link.Url[2]}>
-              {link.linkText[2]} 
-              </Link>
+                <Link to={link.Url[2]}>{link.linkText[2]}</Link>
               </p>
             </div>
           ))}
