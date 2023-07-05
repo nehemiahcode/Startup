@@ -8,7 +8,9 @@ import FormImage from "../assets/form-picture.png";
 import { Link } from "react-router-dom";
 
 const schema = yup.object({
-  firstName: yup.string().required("Username is a required field"),
+  firstName: yup.string()
+  .required("Username is a required field")
+  .max(10, "That's too long!"),
   email: yup
     .string()
     .required("Email is a required field")
