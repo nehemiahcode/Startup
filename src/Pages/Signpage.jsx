@@ -4,7 +4,7 @@ import Mainlayoutdiv from "./Mainlayoutdiv";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import FormImage from "../assets/form-picture.png";
+// import FormImage from "../assets/form-picture.png";
 import { Link } from "react-router-dom";
 
 const schema = yup.object({
@@ -26,7 +26,7 @@ const schema = yup.object({
 function Signpage() {
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = React.useState(false);
 
   const {
     register,
@@ -63,10 +63,10 @@ function Signpage() {
     },
     {
       id: 2,
-      type: "password",
       placeholder: "Your password",
       errors: "password",
       name: "password",
+      type: "password",
     },
   ];
   return (
@@ -98,13 +98,11 @@ function Signpage() {
                 </button>
               </div>
             ) : (
-              <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] md:w-[70%] sm:w-[80%] lg:w-[50%] mx-auto h-[auto] rounded-lg shadow-xl">
+              <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] md:w-[70%] sm:w-[80%] lg:w-[40%] mx-auto h-[auto] rounded-lg shadow-xl">
                 <h1 className=" text-white font-semibold text-3xl pl-5">
                   Sign in to your account
                 </h1>
                 <form
-                action="https://formspree.io/f/mzblbpov"
-                method="POST"
                   onSubmit={handleSubmit(onSubmit)}
                   className="px-3 py-7 w-[100%] h-[auto] flex flex-col gap-3"
                 >
@@ -112,22 +110,22 @@ function Signpage() {
                     <div key={index} className=" flex flex-col w-full h-auto">
                       <input
                         name={input.name}
-                        type={input.type}
+                        type={`${input.type}`}
                         {...register(input.errors)}
                         placeholder={input.placeholder}
                         disabled={Loading}
                         autoComplete="off"
-                        className={` bg-slate-700 text-white placeholder:font-medium ${
+                        className={`  bg-slate-700 text-white placeholder:font-medium ${
                           Loading ? " cursor-not-allowed" : " "
                         }
-                          px-4 py-3 w-[95%] sm:w-[80%] md:w-[70%] lg:w-[70%] rounded-md shadow-xl outline-none  border-[1px] border-sky-700`}
+                          px-4 py-3 w-[95%] sm:w-[80%] md:w-[70%] lg:w-[80%] rounded-md shadow-xl outline-none  border-[1px] border-sky-700`}
                       />
                       <span className=" text-red-600 py-2 font-medium">
                         {errors[input.errors]?.message}
                       </span>
                     </div>
                   ))}
-                  <div className=" flex items-center justify-between w-full pr-3">
+                  <div className=" flex items-center justify-normal gap-20 w-full pr-3">
                     <button
                       type="submit"
                       disabled={Loading}

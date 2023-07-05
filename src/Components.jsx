@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import bgImage from "./assets/rose.svg";
-import bgImage2 from "./assets/bgimg.svg";
+// import bgImage2 from "./assets/bgimg.svg";
 import Fullimage from "./assets/shape.svg";
 import CenteredImage from "./assets/video.jpg";
 import AboutImage from "./assets/about-image.svg";
@@ -416,8 +416,8 @@ export function ScrollToTop() {
     <button
       onClick={ScrollToTop}
       className={`h-[45px] w-[45px] ${
-        visibleButton ? " invisible" : "visible"
-      } z-[999] rounded-md bg-sky-800 animate-bounce text-white font-bold text-3xl fixed bottom-[40px] right-[20px]`}
+        visibleButton ? "hidden" :"block"
+      } z-[999] rounded-full p-1   bg-sky-800 animate-bounce text-white  text-3xl fixed bottom-[40px] right-[40px]`}
     >
       <ion-icon name="chevron-up-outline"></ion-icon>
     </button>
@@ -443,6 +443,7 @@ export function Contact() {
   const [showalert, setShowAlert] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [text, setText] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -453,7 +454,6 @@ export function Contact() {
 
   const onSubmit = (data) => {
     setLoading(true);
-    setSubmit("mzblbpov");
     setTimeout(() => {
       setLoading(false);
       setShowAlert(true);
@@ -527,8 +527,8 @@ export function Contact() {
                       className={` ${
                         Loading ? "cursor-not-allowed" : " cursor-auto"
                       } py-3 rounded-md placeholder:text-lg placeholder:font-medium
-         border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
-         shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]`}
+                        border-[1px] border-blue-700 placeholder:text-zinc-300 outline-none px-5
+                       shadow-xl text-white bg-slate-700 w-[100%] lg:w-[90%]`}
                     />
                     <span className=" text-red-600 py-2 font-medium">
                       {errors[input.errors]?.message}
@@ -552,7 +552,7 @@ export function Contact() {
                     Loading ? "cursor-not-allowed" : " cursor-auto"
                   } 
            placeholder:text-lg placeholder:font-medium  mx-auto  
-               px-5 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
+               px-3 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
            border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none
              text-white font-normal text-md outline-none rounded-md`}
                 ></textarea>

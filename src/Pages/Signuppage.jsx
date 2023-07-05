@@ -89,7 +89,7 @@ function Signuppage() {
                 </button>
               </div>
             ) : (
-              <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] md:w-[70%] sm:w-[80%] lg:w-[50%] mx-auto h-[auto] rounded-lg shadow-xl">
+              <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] flex flex-col justify-center md:w-[70%] sm:w-[80%] lg:w-[40%] mx-auto h-[auto] rounded-lg shadow-xl">
                 <h1 className=" text-white font-semibold text-3xl pl-5">
                   Sign up for an your account
                 </h1>
@@ -108,7 +108,7 @@ function Signuppage() {
                         className={` bg-slate-700 text-white placeholder:font-medium ${
                           Loading ? " cursor-not-allowed" : " "
                         }
-                          px-4 py-3 w-[95%] sm:w-[80%] md:w-[70%] lg:w-[70%] rounded-md shadow-xl outline-none  border-[1px] border-sky-700`}
+                          px-4 py-3 w-[95%] sm:w-[80%] md:w-[70%] lg:w-[80%] rounded-md shadow-xl outline-none  border-[1px] border-sky-700`}
                       />
                       <span className=" text-red-600 py-2 font-medium">
                         {errors[input.errors]?.message}
@@ -126,7 +126,7 @@ function Signuppage() {
                       <span className="ml-2 text-zinc-200">Remember me</span>
                     </label>
                   </div>
-                  <div className=" flex items-center justify-between w-full pr-3 lg:justify-normal lg:gap-20">
+                  <div className=" flex items-center gap-20  w-full pr-3 lg:justify-normal lg:gap-20">
                     <button
                       type="submit"
                       disabled={Loading}
