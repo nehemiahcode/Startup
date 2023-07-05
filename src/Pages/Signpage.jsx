@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React from "react";
 import { useState } from "react";
 import Mainlayoutdiv from "./Mainlayoutdiv";
 import { useForm } from "react-hook-form";
@@ -8,9 +8,10 @@ import FormImage from "../assets/form-picture.png";
 import { Link } from "react-router-dom";
 
 const schema = yup.object({
-  firstName: yup.string()
-  .required("Username is a required field")
-  .max(10, "That's too long!"),
+  firstName: yup
+    .string()
+    .required("Username is a required field")
+    .max(10, "That's too long!"),
   email: yup
     .string()
     .required("Email is a required field")
@@ -46,15 +47,27 @@ function Signpage() {
     }, 3000);
   };
   const Inputs = [
-    { id: 0, type: "text", placeholder: "Your username ", errors: "firstName" },
-    { id: 1, type: "email", placeholder: "Your email", errors: "email" },
+    {
+      id: 0,
+      type: "text",
+      placeholder: "Your username ",
+      errors: "firstName",
+      name: "text",
+    },
+    {
+      id: 1,
+      type: "email",
+      placeholder: "Your email",
+      errors: "email",
+      name: "email",
+    },
     {
       id: 2,
       type: "password",
       placeholder: "Your password",
       errors: "password",
+      name: "password",
     },
-   
   ];
   return (
     <Mainlayoutdiv>
@@ -69,7 +82,8 @@ function Signpage() {
                 <h1 className={` text-black font-medium text-xl text-center`}>
                   Hello <span className=" font-semibold text-2xl">{text}</span>
                   <br />
-                  We  your data is under verification, we will get back to you soon
+                  We your data is under verification, we will get back to you
+                  soon
                 </h1>
 
                 <span
@@ -79,7 +93,9 @@ function Signpage() {
                 >
                   <ion-icon name="close-circle-outline"></ion-icon>
                 </span>
-                <button className=" bg-slate-800 text-white text-lg font-semibold px-3 py-2 rounded-md mt-3"><Link to={"/"}>Go back to home</Link></button>
+                <button className=" bg-slate-800 text-white text-lg font-semibold px-3 py-2 rounded-md mt-3">
+                  <Link to={"/"}>Go back to home</Link>
+                </button>
               </div>
             ) : (
               <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] md:w-[70%] sm:w-[80%] lg:w-[50%] mx-auto h-[auto] rounded-lg shadow-xl">
@@ -87,18 +103,23 @@ function Signpage() {
                   Sign in to your account
                 </h1>
                 <form
+                action="https://formspree.io/f/mzblbpov"
+                method="POST"
                   onSubmit={handleSubmit(onSubmit)}
                   className="px-3 py-7 w-[100%] h-[auto] flex flex-col gap-3"
                 >
                   {Inputs.map((input, index) => (
                     <div key={index} className=" flex flex-col w-full h-auto">
                       <input
+                        name={input.name}
                         type={input.type}
                         {...register(input.errors)}
                         placeholder={input.placeholder}
                         disabled={Loading}
                         autoComplete="off"
-                        className={` bg-slate-700 text-white placeholder:font-medium ${Loading ? " cursor-not-allowed" :  " "}
+                        className={` bg-slate-700 text-white placeholder:font-medium ${
+                          Loading ? " cursor-not-allowed" : " "
+                        }
                           px-4 py-3 w-[95%] sm:w-[80%] md:w-[70%] lg:w-[70%] rounded-md shadow-xl outline-none  border-[1px] border-sky-700`}
                       />
                       <span className=" text-red-600 py-2 font-medium">
@@ -106,23 +127,27 @@ function Signpage() {
                       </span>
                     </div>
                   ))}
-                 <div className=" flex items-center justify-between w-full pr-3">
-                 <button
-                    type="submit"
-                    disabled={Loading}
-                    className={` px-4 py-2 mt-2 rounded-md ${Loading ? " cursor-not-allowed" :  " cursor-pointer"}
+                  <div className=" flex items-center justify-between w-full pr-3">
+                    <button
+                      type="submit"
+                      disabled={Loading}
+                      className={` px-4 py-2 mt-2 rounded-md ${
+                        Loading ? " cursor-not-allowed" : " cursor-pointer"
+                      }
                    bg-sky-700 text-xl w-[160px] focus:ring-2 ring-inset ring-yellow-50 text-white font-medium`}
-                  >
-                    {Loading ? (
-                      <span className="  animate-spin inline-block text-2xl font-semibold text-white">
-                        <ion-icon name="refresh-outline"></ion-icon>
-                      </span>
-                    ) : (
-                      "Submit"
-                    )}
-                  </button>
-                  <h1 className=" text-sky-400 underline font-medium text-lg"><Link to={"/signup"}>Sign up</Link></h1>
-                 </div>
+                    >
+                      {Loading ? (
+                        <span className="  animate-spin inline-block text-2xl font-semibold text-white">
+                          <ion-icon name="refresh-outline"></ion-icon>
+                        </span>
+                      ) : (
+                        "Submit"
+                      )}
+                    </button>
+                    <h1 className=" text-sky-400 underline font-medium text-lg">
+                      <Link to={"/signup"}>Sign up</Link>
+                    </h1>
+                  </div>
                 </form>
               </div>
             )}

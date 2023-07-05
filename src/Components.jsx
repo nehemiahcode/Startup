@@ -453,6 +453,7 @@ export function Contact() {
 
   const onSubmit = (data) => {
     setLoading(true);
+    setSubmit("mzblbpov");
     setTimeout(() => {
       setLoading(false);
       setShowAlert(true);
@@ -517,6 +518,7 @@ export function Contact() {
                       {input.label}
                     </label>
                     <input
+                  
                       disabled={Loading}
                       type={input.type}
                       {...register(input.errors)}
