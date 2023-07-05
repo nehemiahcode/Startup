@@ -65,7 +65,7 @@ function Signuppage() {
         <div className=" grid place-content-center w-full grid-cols-1">
           <div className="  w-full h-[auto] flex justify-center">
             {show ? (
-              <div className=" relative bg-white px-10 py-5 rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] h-[300px] shadow-xl flex items-center flex-col">
+              <div className=" relative bg-white px-10  rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] h-[auto] py-5 shadow-xl flex items-center flex-col">
                 <span className=" text-lime-600 text-8xl flex justify-center items-center mt-3">
                   <ion-icon name="checkmark-circle-outline"></ion-icon>
                 </span>
