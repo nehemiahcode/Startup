@@ -82,7 +82,7 @@ function Signpage() {
             ) : (
               <div className=" bg-slate-900 opacity-80 px-2 py-5 w-[100%] md:w-[70%] sm:w-[80%] lg:w-[50%] mx-auto h-[auto] rounded-lg shadow-xl">
                 <h1 className=" text-white font-semibold text-3xl pl-5">
-                  Sign in your account
+                  Sign in to your account
                 </h1>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
