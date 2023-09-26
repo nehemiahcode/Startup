@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import Mainlayoutdiv from "./Mainlayoutdiv";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import emailjs from "@emailjs/browser";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 
@@ -23,6 +24,7 @@ const schema = yup.object({
 function Signuppage() {
   const [show, setShow] = useState(false);
   const [Loading, setLoading] = useState(false);
+  const Form = useRef()
 
   const {
     register,
@@ -35,6 +37,19 @@ function Signuppage() {
 
   const onSubmit = (data) => {
     setLoading(true);
+    emailjs
+    .sendForm(
+      "service_kk9rv0k",
+      "template_hm08gbr",
+      form.current,
+      "TRHR4_xoRVQ1aaq9v"
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     setTimeout(() => {
       setLoading(false);
       setShow(true);
@@ -94,6 +109,7 @@ function Signuppage() {
                   Sign up for an your account
                 </h1>
                 <form
+                ref={Form}
                   onSubmit={handleSubmit(onSubmit)}
                   className="px-3 py-7 w-[100%] h-[auto] flex flex-col gap-3"
                 >
@@ -101,6 +117,7 @@ function Signuppage() {
                     <div key={index} className=" flex flex-col w-full h-auto">
                       <input
                         type={input.type}
+                        name={input.errors}
                         {...register(input.errors)}
                         placeholder={input.placeholder}
                         disabled={Loading}

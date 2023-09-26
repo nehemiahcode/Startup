@@ -1,8 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Mainlayoutdiv from "./Mainlayoutdiv";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import emailjs from "@emailjs/browser";
 import * as yup from "yup";
 // import FormImage from "../assets/form-picture.png";
 import { Link } from "react-router-dom";
@@ -27,6 +28,7 @@ function Signpage() {
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
   const [Loading, setLoading] = useState(false);
+  const form = useRef();
 
   const {
     register,
@@ -39,6 +41,19 @@ function Signpage() {
 
   const onSubmit = (data) => {
     setLoading(true);
+    emailjs
+    .sendForm(
+      "service_kk9rv0k",
+      "template_hm08gbr",
+      form.current,
+      "TRHR4_xoRVQ1aaq9v"
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     setTimeout(() => {
       setLoading(false);
       setShow(true);
@@ -52,20 +67,20 @@ function Signpage() {
       type: "text",
       placeholder: "Your username ",
       errors: "firstName",
-      name: "text",
+      names: "name",
     },
     {
       id: 1,
       type: "email",
       placeholder: "Your email",
       errors: "email",
-      name: "email",
+      names: "email",
     },
     {
       id: 2,
       placeholder: "Your password",
       errors: "password",
-      name: "password",
+      names: "password",
       type: "password",
     },
   ];
@@ -75,14 +90,14 @@ function Signpage() {
         <div className=" grid place-content-center w-full grid-cols-1">
           <div className="  w-full h-[auto] flex justify-center">
             {show ? (
-              <div className=" relative bg-white px-10 py-7 rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] h-[auto] shadow-xl flex items-center flex-col">
+              <div className=" relative bg-white px-5 md:px-10 py-7 rounded-lg w-[90%] lg:w-[40%] md:w-[60%] sm:w-[80%] h-[auto] shadow-xl flex items-center flex-col">
                 <span className=" text-lime-600 text-7xl flex justify-center items-center mt-3">
                   <ion-icon name="checkmark-circle-outline"></ion-icon>
                 </span>
                 <h1 className={` text-black font-medium text-xl text-center`}>
                   Hello <span className=" font-semibold text-2xl">{text}</span>
                   <br />
-                  We your data is under verification, we will get back to you
+                  your data is under verification, we will get back to you
                   soon
                 </h1>
 
@@ -103,13 +118,14 @@ function Signpage() {
                   Sign in to your account
                 </h1>
                 <form
+                  ref={form}
                   onSubmit={handleSubmit(onSubmit)}
                   className="px-3 py-7 w-[100%] h-[auto] flex flex-col gap-3"
                 >
                   {Inputs.map((input, index) => (
                     <div key={index} className=" flex flex-col w-full h-auto">
                       <input
-                        name={input.name}
+                        name={input.names}
                         type={`${input.type}`}
                         {...register(input.errors)}
                         placeholder={input.placeholder}

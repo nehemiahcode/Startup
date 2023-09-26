@@ -500,8 +500,8 @@ export function Contact() {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="px-4 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
-              <h1 className=" text-white font-bold text-4xl pb-4 px-1 lg:px-4">
+            <div className="px-2 py-10 bg-slate-800 h-auto w-full sm:w-[80%] md:w-[70%] lg:w-[90%] lg:mx-0 sm:mx-auto rounded-lg shadow-xl">
+              <h1 className=" text-white font-bold text-xl md:text-4xl pb-4 px-1 lg:px-4">
                 Need Help? Open a Ticket
               </h1>
               <p className=" text-white font-medium text-lg px-1 lg:px-4">
@@ -551,7 +551,7 @@ export function Contact() {
                   className={` ${
                     Loading ? "cursor-not-allowed" : " cursor-auto"
                   } 
-           placeholder:text-lg placeholder:font-medium  mx-auto  
+           placeholder:text-base  mx-auto  
                px-3 py-5 w-[100%] lg:w-[100%] bg-slate-700 h-[150px]    
            border-[1px] border-blue-700 placeholder:text-zinc-300 resize-none
              text-white font-normal text-md outline-none rounded-md`}
@@ -567,7 +567,7 @@ export function Contact() {
                 bg-blue-500 px-4 py-3 ml-3 lg:ml-5 focus:ring-4 ring-inset ring-blue-200 hover:text-black duration-300 hover:bg-blue-300 rounded-lg w-[200px] text-white font-semibold`}
               >
                 {Loading ? (
-                  <span className="  animate-spin inline-block text-2xl font-semibold text-white">
+                  <span className="  animate-spin inline-block text-2xl font-medium text-white">
                     <ion-icon name="refresh-outline"></ion-icon>
                   </span>
                 ) : (
@@ -675,3 +675,4 @@ export function Footer() {
     </>
   );
 }
+
